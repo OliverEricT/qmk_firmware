@@ -39,15 +39,15 @@ bool oled_task_kb(void) {
 //Knobs
 #ifdef ENCODER_ENABLE
 struct Knob {
-  uint16_t clockwiseAction;
-  uint16_t counterAction;
+  qk_keycode_defines clockwiseAction;
+  qk_keycode_defines counterAction;
 }
 
 Knob PROGMEM knobs[][] = {
   [] = [
-    { , },
-    { , },
-    { , }
+    { KC_PGDN, KC_PGUP },             // Top Left Knob
+    { KC_MS_WH_DOWN, KC_MS_WH_UP },   // Top Right Knob
+    { KC_VOLU, KC_VOLD }              // Big Bottom Knob
   ],
   [] = [
     { , },
@@ -60,7 +60,6 @@ Knob PROGMEM knobs[][] = {
     { , }
   ]
 }
-
 
 bool encoder_update_kb(uint8_t index, bool clockwise) {
   if (!encoder_update_user(index, clockwise)) {

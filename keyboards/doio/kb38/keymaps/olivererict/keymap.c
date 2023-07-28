@@ -12,6 +12,13 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * 
+ * 
+ * 
+ * This profile is designed to be used with an adjoining 65% board and 
+ * be utilized with a few layers. The default layer being the normal
+ * navigation and numpad. With the remaining layers being for use with a
+ * few different develpment focused applications.
  */
 
 #include QMK_KEYBOARD_H
@@ -39,7 +46,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * └───────┴───┴───┘└───┴───┴───┘└───┴───┴───┘
      */
     [_QWERTY] = LAYOUT(
-        MO(1),            KC_BSPC,             RGB_RMOD, RGB_TOG, RGB_MOD,    KC_F1,   KC_F2,   KC_F3,
+        TO(1),            KC_BSPC,             KC_F13,   KC_F14,  KC_F15,     KC_F16,  KC_F17,  KC_F18,
         KC_NUM,  KC_PSLS, KC_PAST, KC_PMNS,    KC_PAUS,  KC_SCRL, KC_PSCR,
         KC_P7,   KC_P8,   KC_P9,   KC_PPLS,    KC_INS,   KC_HOME, KC_PGUP,
         KC_P4,   KC_P5,   KC_P6,               KC_END,   KC_DEL,  KC_PGDN,
@@ -47,7 +54,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_P0,            KC_PDOT,             KC_LEFT,  KC_DOWN, KC_RGHT,    KC_HOME, KC_END,  KC_B
     ),
     [_VISUALSTUDIO] = LAYOUT(
-        _______,          KC_BSPC,             RGB_RMOD, RGB_TOG, RGB_MOD,    KC_A,    QK_RBT,  QK_BOOT,
+        TO(2),            KC_BSPC,             RGB_RMOD, RGB_TOG, RGB_MOD,    KC_A,    QK_RBT,  QK_BOOT,
         KC_NUM,  KC_PSLS, KC_PAST, KC_PMNS,    KC_PAUS,  KC_SCRL, KC_PSCR,
         KC_P7,   KC_P8,   KC_P9,   KC_PPLS,    KC_INS,   KC_HOME, KC_PGUP,
         KC_P4,   KC_P5,   KC_P6,               KC_END,   KC_DEL,  KC_PGDN,
@@ -55,7 +62,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_P0,            KC_PDOT,             KC_LEFT,  KC_DOWN, KC_RGHT,    KC_HOME, KC_END,  KC_B
     ),
     [_VSCODE] = LAYOUT(
-        _______,          KC_BSPC,             RGB_RMOD, RGB_TOG, RGB_MOD,    KC_A,    QK_RBT,  QK_BOOT,
+        TO(0),            KC_BSPC,             RGB_RMOD, RGB_TOG, RGB_MOD,    KC_A,    QK_RBT,  QK_BOOT,
         KC_NUM,  KC_PSLS, KC_PAST, KC_PMNS,    KC_PAUS,  KC_SCRL, KC_PSCR,
         KC_P7,   KC_P8,   KC_P9,   KC_PPLS,    KC_INS,   KC_HOME, KC_PGUP,
         KC_P4,   KC_P5,   KC_P6,               KC_END,   KC_DEL,  KC_PGDN,
