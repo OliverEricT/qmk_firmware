@@ -38,33 +38,47 @@ bool oled_task_kb(void) {
 
 //Knobs
 #ifdef ENCODER_ENABLE
+struct Knob {
+  uint16_t clockwiseAction;
+  uint16_t counterAction;
+}
+
+Knob PROGMEM knobs[][] = {
+  [] = [
+    { , },
+    { , },
+    { , }
+  ],
+  [] = [
+    { , },
+    { , },
+    { , }
+  ],
+  [] = [
+    { , },
+    { , },
+    { , }
+  ]
+}
+
+
 bool encoder_update_kb(uint8_t index, bool clockwise) {
     if (!encoder_update_user(index, clockwise)) {
         return false;
     }
 
-    if (index == 0) {
-        // Page Up/Down
-        if (clockwise) {
-            tap_code(KC_PGDN);
-        } else {
-            tap_code(KC_PGUP);
-        }
-    } else if (index == 1) {
-        // Mouse Wheel Up/Down
-        if (clockwise) {
-            tap_code(KC_MS_WH_DOWN);
-        } else {
-            tap_code(KC_MS_WH_UP);
-        }
-    } else if (index == 2) {
-        // Volume Up/Down
-        if (clockwise) {
-            tap_code(KC_VOLU);
-        } else {
-            tap_code(KC_VOLD);
-        }
+    switch(biton32(layer_state)){
+      case 2:
+        tap_code(clockwise ? knobs[2][index].clockwiseAction : knobs[2][index].counterAction)
+        break;
+      case 1:
+        tap_code(clockwise ? knobs[1][index].clockwiseAction : knobs[1][index].counterAction)
+        break;
+      default:
+        tap_code(clockwise ? knobs[0][index].clockwiseAction : knobs[0][index].counterAction)
+        break;
     }
+
     return true;
 }
 #endif
