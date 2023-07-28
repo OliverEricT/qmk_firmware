@@ -59,3 +59,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 The large knob press is mapped as KC_B, despite it not having one.
 I'm not quite sure why, but the only reason it can't be clicked is because the potentiometer is different.
 If you were to replace it with one that can be clicked, it would work. I shorted it and it does work.*/
+
+//Knobs
+#if defined(ENCODER_MAP_ENABLE)
+const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
+  [_QWERTY] = {
+    ENCODER_CCW_CW(KC_PGDN, KC_PGUP),
+    ENCODER_CCW_CW(KC_MS_WH_DOWN, KC_MS_WH_UP),
+    ENCODER_CCW_CW(KC_VOLD, KC_VOLU)
+  },
+  [_LAYERTWO] = {
+    ENCODER_CCW_CW(KC_PGDN, KC_PGUP),
+    ENCODER_CCW_CW(KC_MS_WH_DOWN, KC_MS_WH_UP),
+    ENCODER_CCW_CW(KC_VOLD, KC_VOLU)
+  },
+};
+#endif
