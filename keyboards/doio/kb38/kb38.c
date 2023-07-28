@@ -63,22 +63,22 @@ Knob PROGMEM knobs[][] = {
 
 
 bool encoder_update_kb(uint8_t index, bool clockwise) {
-    if (!encoder_update_user(index, clockwise)) {
-        return false;
-    }
+  if (!encoder_update_user(index, clockwise)) {
+    return false;
+  }
 
-    switch(biton32(layer_state)){
-      case 2:
-        tap_code(clockwise ? knobs[2][index].clockwiseAction : knobs[2][index].counterAction)
-        break;
-      case 1:
-        tap_code(clockwise ? knobs[1][index].clockwiseAction : knobs[1][index].counterAction)
-        break;
-      default:
-        tap_code(clockwise ? knobs[0][index].clockwiseAction : knobs[0][index].counterAction)
-        break;
-    }
+  switch(biton32(layer_state)){
+    case 2:
+      tap_code(clockwise ? knobs[2][index].clockwiseAction : knobs[2][index].counterAction)
+      break;
+    case 1:
+      tap_code(clockwise ? knobs[1][index].clockwiseAction : knobs[1][index].counterAction)
+      break;
+    default:
+      tap_code(clockwise ? knobs[0][index].clockwiseAction : knobs[0][index].counterAction)
+      break;
+  }
 
-    return true;
+  return true;
 }
 #endif
