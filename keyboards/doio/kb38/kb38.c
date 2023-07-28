@@ -16,6 +16,7 @@
 
 #include "quantum.h"
 
+//TODO add profiles for the logo
 //Display
 #ifdef OLED_ENABLE
 static void render_logo(void) {
