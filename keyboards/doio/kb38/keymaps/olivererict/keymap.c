@@ -75,3 +75,43 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 The large knob press is mapped as KC_B, despite it not having one.
 I'm not quite sure why, but the only reason it can't be clicked is because the potentiometer is different.
 If you were to replace it with one that can be clicked, it would work. I shorted it and it does work.*/
+
+//Knobs
+#ifdef ENCODER_ENABLE
+struct Knob {
+  qk_keycode_defines clockwiseAction;
+  qk_keycode_defines counterAction;
+}
+
+Knob PROGMEM knobs[][] = {
+  [_QWERTY] = [
+    { KC_PGDN, KC_PGUP },             // Top Left Knob
+    { KC_MS_WH_DOWN, KC_MS_WH_UP },   // Top Right Knob
+    { KC_VOLU, KC_VOLD }              // Big Bottom Knob
+  ],
+  [_VISUALSTUDIO] = [
+    { , },
+    { , },
+    { , }
+  ],
+  [_VSCODE] = [
+    { , },
+    { , },
+    { , }
+  ]
+}
+
+bool encoder_update_user(uint8_t index, bool clockwise) {
+  switch(biton32(layer_state)){
+    case 2:
+      tap_code(clockwise ? knobs[2][index].clockwiseAction : knobs[2][index].counterAction)
+      break;
+    case 1:
+      tap_code(clockwise ? knobs[1][index].clockwiseAction : knobs[1][index].counterAction)
+      break;
+    default:
+      tap_code(clockwise ? knobs[0][index].clockwiseAction : knobs[0][index].counterAction)
+      break;
+  }
+}
+#endif
